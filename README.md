@@ -2,7 +2,7 @@
 
 A demonstration project showcasing [wanman](https://github.com/anthropics/wanman) -- an autonomous multi-agent task orchestration framework for software development.
 
-> **Status:** Active Development | Phase 4 -- Orchestration
+> **Status:** Active Development | Phase 4 -- Orchestrator & Event System
 
 ## Table of Contents
 
@@ -85,17 +85,55 @@ completeTask(task.id);
 
 ### Using taskQueue
 
-`src/taskQueue.js` provides a priority-based min-heap task queue:
+`src/taskQueue.js` provides a priority-based min-heap queue:
 
 ```js
-const { enqueue, dequeue, peek, size } = require('./src/taskQueue');
+const { enqueue, dequeue, peek, size, clear, toArray } = require('./src/taskQueue');
 
 enqueue({ title: 'Urgent fix', priority: 1 });
 enqueue({ title: 'Nice to have', priority: 5 });
 
-peek();    // returns highest-priority item without removing it
-dequeue(); // removes and returns highest-priority item
-size();    // current queue depth
+peek();      // returns highest-priority item without removing it
+dequeue();   // removes and returns highest-priority item
+size();      // current queue depth
+toArray();   // snapshot of all items sorted by priority
+clear();     // empty the queue
+```
+
+### Using agentRegistry
+
+`src/agentRegistry.js` provides agent registration, lookup, and role-based round-robin dispatch:
+
+```js
+const {
+  registerAgent,
+  getAgent,
+  listAgents,
+  updateStatus,
+  unregisterAgent,
+  dispatch,
+} = require('./src/agentRegistry');
+
+// Register agents
+registerAgent({ name: 'dev-1', role: 'dev' });
+registerAgent({ name: 'dev-2', role: 'dev' });
+registerAgent({ name: 'cto-1', role: 'cto', status: 'idle' });
+
+// Look up by name
+getAgent('dev-1');
+// => { name: 'dev-1', role: 'dev', status: 'active', registeredAt: Date }
+
+// Filter by role and/or status
+listAgents({ role: 'dev', status: 'active' });
+
+// Update status: 'active' | 'idle' | 'offline'
+updateStatus('dev-1', 'idle');
+
+// Round-robin dispatch to next active agent with given role
+dispatch('dev');  // returns dev-1 or dev-2 in rotation
+
+// Remove an agent
+unregisterAgent('dev-1');
 ```
 
 ### Manual Development
@@ -124,17 +162,18 @@ gh pr create --title "Brief description" --body "Details"
 ├── src/                  # source code
 │   ├── index.js          # entry point — re-exports all public modules
 │   ├── taskRunner.js     # in-memory task orchestration: createTask, listTasks, completeTask
-│   ├── taskQueue.js      # priority-based min-heap task queue: enqueue, dequeue, peek, size
-│   ├── agentRegistry.js  # agent registration, lookup, role/status filtering, round-robin dispatch
+│   ├── taskQueue.js      # priority-based min-heap queue: enqueue, dequeue, peek, size, clear, toArray
+│   ├── agentRegistry.js  # agent registry & dispatch: registerAgent, getAgent, listAgents, updateStatus, dispatch
 │   ├── orchestrator.js   # top-level orchestration: wires agentRegistry + taskQueue + taskRunner
-│   └── eventBus.js       # lightweight pub/sub event bus for task lifecycle hooks
+│   └── cli.js            # CLI entry point: parse commands (run, list, help), wire to orchestrator
 ├── test/                 # test suite (>= 95% coverage gate)
-│   ├── index.test.js     # unit tests for index.js (100% coverage)
-│   ├── taskRunner.test.js    # unit tests for taskRunner (100% coverage)
-│   ├── taskQueue.test.js     # unit tests for taskQueue (100% coverage, 92 tests)
-│   ├── agentRegistry.test.js # unit tests for agentRegistry (100% coverage, 40 tests)
-│   ├── orchestrator.test.js  # unit tests for orchestrator (96%+ coverage)
-│   └── integration.test.js   # integration tests — taskRunner+taskQueue+agentRegistry (23 tests)
+│   ├── index.test.js          # unit tests for index.js
+│   ├── taskRunner.test.js     # unit tests for taskRunner (100% coverage)
+│   ├── taskQueue.test.js      # unit tests for taskQueue (100% coverage, 92 tests)
+│   ├── agentRegistry.test.js  # unit tests for agentRegistry (100% coverage, 40 tests)
+│   ├── orchestrator.test.js   # unit tests for orchestrator (96%+ coverage)
+│   ├── cli.test.js            # unit tests for CLI module (100% coverage)
+│   └── integration.test.js    # cross-module integration tests (23 tests)
 ├── CHANGELOG.md          # release history
 ├── CONTRIBUTING.md       # contribution guidelines
 ├── LICENSE               # project license
@@ -150,8 +189,8 @@ gh pr create --title "Brief description" --body "Details"
 | **0 -- Foundation** | README, LICENSE, .gitignore, CHANGELOG scaffolding | ✅ Done |
 | **1 -- Scaffolding** | Choose stack, initialize package manifest, set up CI, add CONTRIBUTING.md | ✅ Done |
 | **2 -- First Feature** | Implement core feature v0.1, write tests (>= 95% coverage), cut v0.1.0 release | ✅ Done |
-| **3 -- Core Modules** | Add `taskQueue`, `agentRegistry`, `eventBus`; re-export all from `index.js`; 155+ tests; npm publish readiness | ✅ Done |
-| **4 -- Orchestration** | Implement `orchestrator.js` (coordinate taskRunner+taskQueue+agentRegistry); add `bin/cli.js` CLI entry point | 🚧 In Progress |
+| **3 -- Core Modules** | Add `taskQueue` (priority-based min-heap) and `agentRegistry` (role-based dispatch); integrate modules via `index.js` re-exports; full integration test suite (155+ tests) | ✅ Done |
+| **4 -- Orchestrator & Event System** | Add `orchestrator.js` (coordinate taskQueue + agentRegistry); add `eventEmitter.js` (lightweight pub/sub for inter-module events); add `bin/cli.js` (CLI entry point) | 🚧 In Progress |
 
 ## Development
 
@@ -209,4 +248,4 @@ This project is licensed under the MIT License. See [LICENSE](LICENSE) for detai
 
 ---
 
-*This project is managed by autonomous agents via [wanman](https://github.com/anthropics/wanman). README last updated: 2026-04-27. Roadmap: Phase 0–3 complete (v0.1.0 released, core modules shipped); Phase 4 (orchestration) in progress.*
+*This project is managed by autonomous agents via [wanman](https://github.com/anthropics/wanman). README last updated: 2026-04-27. Roadmap: Phase 0–3 complete (v0.1.0 released); Phase 4 (orchestrator & event system) in progress.*

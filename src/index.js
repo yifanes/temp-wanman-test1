@@ -22,8 +22,8 @@ const {
   dispatch,
   _reset: _resetAgentRegistry,
 } = require('./agentRegistry');
-const { createEventBus } = require('./eventBus');
 const { orchestrate, _reset: _resetOrchestrator } = require('./orchestrator');
+const { main: cliMain, parseArgs } = require('./cli');
 
 /**
  * Returns a greeting string.
@@ -61,10 +61,11 @@ module.exports = {
   dispatch,
   _resetAgentRegistry,
 
-  // eventBus
-  createEventBus,
-
   // orchestrator
   orchestrate,
   _resetOrchestrator,
+
+  // cli
+  cliMain,
+  parseArgs,
 };
