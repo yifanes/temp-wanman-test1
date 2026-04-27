@@ -2,7 +2,7 @@
 
 A demonstration project showcasing [wanman](https://github.com/anthropics/wanman) -- an autonomous multi-agent task orchestration framework for software development.
 
-> **Status:** Early Development | Phase 1 -- Scaffolding
+> **Status:** Early Development | Phase 0 -- Repo Foundation
 
 ## Table of Contents
 
@@ -14,7 +14,6 @@ A demonstration project showcasing [wanman](https://github.com/anthropics/wanman
 - [Roadmap](#roadmap)
 - [Development](#development)
 - [Contributing](#contributing)
-- [Changelog](#changelog)
 - [License](#license)
 
 ## Overview
@@ -38,7 +37,7 @@ This repository demonstrates how **wanman** bootstraps and manages a software pr
 
 ```bash
 # Clone the repository
-git clone git@github.com:yifanes/temp-wanman-test1.git
+git clone https://github.com/yifanes/temp-wanman-test1.git
 cd temp-wanman-test1
 
 # If wanman is not yet installed
@@ -94,11 +93,11 @@ gh pr create --title "Brief description" --body "Details"
 
 | Phase | Goal | Status |
 |-------|------|--------|
-| **0 -- Foundation** | README, LICENSE, .gitignore, CHANGELOG scaffolding | ✅ Done |
-| **1 -- Scaffolding** | Choose stack, initialize package manifest, set up CI, add CONTRIBUTING.md | 🔨 In Progress |
+| **0 -- Foundation** | README, LICENSE, .gitignore, CHANGELOG scaffolding | In Progress |
+| **1 -- Scaffolding** | Choose stack, initialize package manifest, set up CI, add CONTRIBUTING.md | Planned |
 | **2 -- First Feature** | Implement core feature v0.1, write tests (>= 95% coverage), cut first release | Planned |
 
-> Phase 0 is complete. Phase 1 scaffolding (package.json, CI, CONTRIBUTING.md) is underway. Language/framework and project domain are pending a human decision for Phase 2.
+> The language/framework and project domain are pending a human decision. Once confirmed, Phase 1 tasks will be created automatically by the CEO agent.
 
 ## Development
 
@@ -130,8 +129,7 @@ Here's a quick summary of how to get started:
 3. **Make your changes** -- keep them scoped and well-tested
 4. **Run tests** with coverage before pushing:
    ```bash
-   # Run tests (command TBD based on project stack)
-   npm test          # or equivalent
+   npm test
    ```
 5. **Open a Pull Request** with a clear title and description
 6. **Wait for review** -- the CTO agent or a maintainer will review your PR
@@ -150,10 +148,6 @@ If you find a bug or have a feature request, please open an issue with:
 - A clear description of the problem or proposal
 - Steps to reproduce (for bugs)
 - Expected vs actual behavior
-
-## Changelog
-
-See [CHANGELOG.md](./CHANGELOG.md) for a full history of changes across all releases.
 
 ## License
 
