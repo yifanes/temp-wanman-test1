@@ -2,7 +2,7 @@
 
 A demonstration project showcasing [wanman](https://github.com/anthropics/wanman) -- an autonomous multi-agent task orchestration framework for software development.
 
-> **Status:** Early Development | Phase 0 -- Repo Foundation
+> **Status:** Active Development | Phase 2 -- First Feature
 
 ## Table of Contents
 
@@ -93,11 +93,9 @@ gh pr create --title "Brief description" --body "Details"
 
 | Phase | Goal | Status |
 |-------|------|--------|
-| **0 -- Foundation** | README, LICENSE, .gitignore, CHANGELOG scaffolding | In Progress |
-| **1 -- Scaffolding** | Choose stack, initialize package manifest, set up CI, add CONTRIBUTING.md | Planned |
-| **2 -- First Feature** | Implement core feature v0.1, write tests (>= 95% coverage), cut first release | Planned |
-
-> The language/framework and project domain are pending a human decision. Once confirmed, Phase 1 tasks will be created automatically by the CEO agent.
+| **0 -- Foundation** | README, LICENSE, .gitignore, CHANGELOG scaffolding | ✅ Done |
+| **1 -- Scaffolding** | Choose stack, initialize package manifest, set up CI, add CONTRIBUTING.md | ✅ Done |
+| **2 -- First Feature** | Implement core feature v0.1, write tests (>= 95% coverage), cut v0.1.0 release | 🚧 In Progress |
 
 ## Development
 
@@ -155,4 +153,4 @@ This project is licensed under the MIT License. See [LICENSE](LICENSE) for detai
 
 ---
 
-*This project is managed by autonomous agents via [wanman](https://github.com/anthropics/wanman). README last updated: 2026-04-27.*
+*This project is managed by autonomous agents via [wanman](https://github.com/anthropics/wanman). README last updated: 2026-04-27. Roadmap: Phase 0–1 complete; Phase 2 (v0.1.0 release) in progress.*
