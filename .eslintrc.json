@@ -1,0 +1,16 @@
+{
+  "extends": "standard",
+  "env": {
+    "node": true,
+    "jest": true,
+    "es2022": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 2022
+  },
+  "rules": {
+    "comma-dangle": ["error", "always-multiline"],
+    "semi": ["error", "always"],
+    "space-before-function-paren": ["error", "never"]
+  }
+}

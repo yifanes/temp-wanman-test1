@@ -5,7 +5,7 @@
   "main": "src/index.js",
   "scripts": {
     "test": "jest --coverage",
-    "lint": "echo \"No linter configured yet\" && exit 0",
+    "lint": "eslint src test",
     "build": "echo \"No build step configured yet\" && exit 0",
     "start": "node src/index.js"
   },
@@ -50,5 +50,12 @@
         }
       ]
     ]
+  },
+  "devDependencies": {
+    "eslint": "^8.57.1",
+    "eslint-config-standard": "^17.1.0",
+    "eslint-plugin-import": "^2.32.0",
+    "eslint-plugin-n": "^16.6.2",
+    "eslint-plugin-promise": "^6.6.0"
   }
 }
