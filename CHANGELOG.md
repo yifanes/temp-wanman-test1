@@ -28,6 +28,7 @@ For contribution guidelines, see [CONTRIBUTING.md](./CONTRIBUTING.md).
 - `src/agentRegistry.js` — agent registration, lookup, role/status filtering, and round-robin dispatch: `registerAgent`, `getAgent`, `listAgents`, `updateStatus`, `unregisterAgent`, `dispatch`; `test/agentRegistry.test.js` with 100% coverage (40 tests)
 - ESLint configured with `eslint-config-standard` (`.eslintrc.json`); `lint` script added to `package.json`
 - Jest added to `devDependencies`; `package-lock.json` generated
+- `src/taskQueue.js` — priority-based min-heap task queue: `enqueue`, `dequeue`, `peek`, `size`, `clear`, `toArray`; `test/taskQueue.test.js` with 100% coverage (92 tests)
 
 ### Changed
 
