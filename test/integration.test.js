@@ -397,7 +397,6 @@ describe('bulk task processing scenario', () => {
     });
 
     // Verify priority ordering: tasks should come out in priority order
-    let lastPriority = 0;
     // We can't check strict ordering from assignments since we already dequeued,
     // but we can verify via the queue's toArray before full drain
   });
