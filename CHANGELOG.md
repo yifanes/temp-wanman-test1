@@ -7,7 +7,14 @@ For contribution guidelines, see [CONTRIBUTING.md](./CONTRIBUTING.md).
 
 ## [Unreleased]
 
-<!-- No unreleased changes yet. New entries go here when work lands after v0.1.0. -->
+### Added
+
+- `src/eventBus.js` — lightweight pub/sub event bus for task lifecycle hooks: `createEventBus()` returns an instance with `on`, `off`, `once`, `emit`, `listenerCount`, and `removeAllListeners`; `on` returns an unsubscribe function; `once` auto-removes after first invocation
+- `src/eventBus.js` exported from `src/index.js` alongside all other public modules (`createEventBus`)
+- Re-exported `taskRunner`, `taskQueue`, and `agentRegistry` from `src/index.js` — consumers can now import all modules from a single entry point: `const { createTask, createTaskQueue, registerAgent, createEventBus } = require('temp-wanman-test1')`
+- `test/integration.test.js` — 23 integration tests covering cross-module workflows for `taskRunner`, `taskQueue`, and `agentRegistry` working together
+- `test/eventBus.test.js` — unit tests for `eventBus` module with 100% coverage
+- npm publish readiness: `files` whitelist in `package.json` (`src/`, `README.md`, `CHANGELOG.md`, `LICENSE`); `.npmignore` excluding dev artifacts from the published package
 
 ---
 
