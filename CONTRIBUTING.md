@@ -173,3 +173,4 @@ Open an issue or start a discussion — we're happy to help get you up and runni
 ---
 
 For a high-level overview of the project, see [README.md → Contributing](./README.md#contributing).
+For a record of all notable changes, see [CHANGELOG.md](./CHANGELOG.md).
