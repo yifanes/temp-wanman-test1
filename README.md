@@ -94,11 +94,11 @@ gh pr create --title "Brief description" --body "Details"
 
 | Phase | Goal | Status |
 |-------|------|--------|
-| **0 -- Foundation** | README, LICENSE, .gitignore, CHANGELOG scaffolding | In Progress |
-| **1 -- Scaffolding** | Choose stack, initialize package manifest, set up CI, add CONTRIBUTING.md | Planned |
+| **0 -- Foundation** | README, LICENSE, .gitignore, CHANGELOG scaffolding | ✅ Done |
+| **1 -- Scaffolding** | Choose stack, initialize package manifest, set up CI, add CONTRIBUTING.md | 🔨 In Progress |
 | **2 -- First Feature** | Implement core feature v0.1, write tests (>= 95% coverage), cut first release | Planned |
 
-> The language/framework and project domain are pending a human decision. Once confirmed, Phase 1 tasks will be created automatically by the CEO agent.
+> Phase 0 is complete. Phase 1 scaffolding (package.json, CI, CONTRIBUTING.md) is underway. Language/framework and project domain are pending a human decision for Phase 2.
 
 ## Development
 
