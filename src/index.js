@@ -6,7 +6,7 @@
  * Re-exports all public modules so consumers can import from a single
  * entry point:
  *
- *   const { helloWorld, createTask, createTaskQueue, registerAgent } = require('temp-wanman-test1');
+ *   const { helloWorld, createTask, createTaskQueue, registerAgent, orchestrate } = require('temp-wanman-test1');
  *
  * @module temp-wanman-test1
  */
@@ -22,6 +22,7 @@ const {
   dispatch,
   _reset: _resetAgentRegistry,
 } = require('./agentRegistry');
+const { orchestrate, _reset: _resetOrchestrator } = require('./orchestrator');
 
 /**
  * Returns a greeting string.
@@ -58,4 +59,8 @@ module.exports = {
   unregisterAgent,
   dispatch,
   _resetAgentRegistry,
+
+  // orchestrator
+  orchestrate,
+  _resetOrchestrator,
 };
