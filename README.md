@@ -2,7 +2,7 @@
 
 A demonstration project showcasing [wanman](https://github.com/anthropics/wanman) -- an autonomous multi-agent task orchestration framework for software development.
 
-> **Status:** Early Development | Phase 0 -- Repo Foundation
+> **Status:** Early Development | Phase 1 -- Scaffolding
 
 ## Table of Contents
 
@@ -14,6 +14,7 @@ A demonstration project showcasing [wanman](https://github.com/anthropics/wanman
 - [Roadmap](#roadmap)
 - [Development](#development)
 - [Contributing](#contributing)
+- [Changelog](#changelog)
 - [License](#license)
 
 ## Overview
@@ -37,7 +38,7 @@ This repository demonstrates how **wanman** bootstraps and manages a software pr
 
 ```bash
 # Clone the repository
-git clone <repository-url>
+git clone git@github.com:yifanes/temp-wanman-test1.git
 cd temp-wanman-test1
 
 # If wanman is not yet installed
@@ -149,6 +150,10 @@ If you find a bug or have a feature request, please open an issue with:
 - A clear description of the problem or proposal
 - Steps to reproduce (for bugs)
 - Expected vs actual behavior
+
+## Changelog
+
+See [CHANGELOG.md](./CHANGELOG.md) for a full history of changes across all releases.
 
 ## License
 
