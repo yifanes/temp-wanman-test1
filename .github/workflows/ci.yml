@@ -1,0 +1,52 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check for trailing whitespace
+        run: |
+          if grep -rn '[[:blank:]]$' README.md CHANGELOG.md LICENSE 2>/dev/null; then
+            echo "::error::Trailing whitespace found"
+            exit 1
+          fi
+          echo "No trailing whitespace found"
+
+      - name: Check for valid markdown structure
+        run: |
+          for f in *.md; do
+            if [ -f "$f" ]; then
+              echo "Checking $f ..."
+              if ! head -1 "$f" | grep -qE '^#|^$|^---'; then
+                echo "::warning file=$f::File does not start with a heading or frontmatter"
+              fi
+            fi
+          done
+          echo "Markdown structure check passed"
+
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Placeholder test
+        run: |
+          echo "Running placeholder tests..."
+          # Verify key project files exist
+          test -f README.md  || test -f readme.md  || { echo "::error::README.md missing"; exit 1; }
+          test -f LICENSE    || { echo "::error::LICENSE missing"; exit 1; }
+          test -f CHANGELOG.md || { echo "::error::CHANGELOG.md missing"; exit 1; }
+          echo "All placeholder tests passed"
