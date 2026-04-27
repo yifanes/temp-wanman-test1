@@ -22,11 +22,7 @@ Thank you for your interest in contributing! This document covers the developmen
    ```bash
    npm install
    ```
-3. Copy the environment template and fill in any required values:
-   ```bash
-   cp .env.example .env.local   # if applicable
-   ```
-4. Verify your setup by running the test suite:
+3. Verify your setup by running the test suite:
    ```bash
    npm test
    ```
@@ -173,3 +169,7 @@ chore(deps): upgrade eslint to v9
 ## Questions?
 
 Open an issue or start a discussion — we're happy to help get you up and running.
+
+---
+
+For a high-level overview of the project, see [README.md → Contributing](./README.md#contributing).

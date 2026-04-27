@@ -120,7 +120,9 @@ All feature branches follow the convention: `wanman/<task-slug>`
 
 ## Contributing
 
-Contributions are welcome! Here's how to get started:
+Contributions are welcome! Please read [CONTRIBUTING.md](./CONTRIBUTING.md) for the full development workflow, branch naming conventions, and PR guidelines.
+
+Here's a quick summary of how to get started:
 
 1. **Fork** the repository
 2. **Create a branch** following the naming convention: `wanman/<descriptive-slug>`
