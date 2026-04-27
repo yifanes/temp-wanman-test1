@@ -1,6 +1,6 @@
 {
   "name": "temp-wanman-test1",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "A demonstration project showcasing wanman — an autonomous multi-agent task orchestration framework for software development.",
   "main": "src/index.js",
   "scripts": {

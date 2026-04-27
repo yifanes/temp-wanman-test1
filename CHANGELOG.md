@@ -25,18 +25,20 @@ For contribution guidelines, see [CONTRIBUTING.md](./CONTRIBUTING.md).
 
 - Comprehensive `README.md` with project overview, installation, usage, contributing, roadmap, and project structure sections
 - Initial project scaffolding: `CHANGELOG.md`, `LICENSE` (MIT), `.gitignore`
-- GitHub Actions CI workflow with lint and placeholder test step (`.github/workflows/ci.yml`)
+- GitHub Actions CI workflow with `npm install` and `npm test` steps (`.github/workflows/ci.yml`)
 - `CONTRIBUTING.md` with development workflow, branch naming, and PR guidelines
-- `src/index.js` entry point with `helloWorld()` function
-- `test/index.test.js` with 100% test coverage (5 test cases)
-- Jest test runner configured in `package.json`
 - `CODE_OF_CONDUCT.md` adopting Contributor Covenant v2.1
 - `SECURITY.md` with vulnerability reporting instructions
 - GitHub issue templates for bug reports and feature requests (`.github/ISSUE_TEMPLATE/`)
 - `.github/PULL_REQUEST_TEMPLATE.md` with checklist matching CONTRIBUTING.md guidelines
-- `package.json` with project metadata and semantic-release configuration
-- Enhanced CI workflow: `npm install` and `npm test` steps in GitHub Actions
+- `package.json` with project metadata, scripts, and semantic-release configuration
 - Cross-links between all top-level docs (README ↔ CONTRIBUTING ↔ CHANGELOG ↔ LICENSE)
+- `src/index.js` entry point with `helloWorld()` function; `test/index.test.js` with 100% coverage
+- `src/taskRunner.js` — in-memory task orchestration: `createTask`, `listTasks`, `completeTask`; `test/taskRunner.test.js` with 100% coverage
+- `src/agentRegistry.js` — agent registration, lookup, role/status filtering, and round-robin dispatch: `registerAgent`, `getAgent`, `listAgents`, `updateStatus`, `unregisterAgent`, `dispatch`; `test/agentRegistry.test.js` with 100% coverage (40 tests)
+- ESLint configured with `eslint-config-standard` (`.eslintrc.json`); `lint` script added to `package.json`
+- Jest added to `devDependencies`; `package-lock.json` generated
+- `src/taskQueue.js` — priority-based min-heap task queue: `enqueue`, `dequeue`, `peek`, `size`, `clear`, `toArray`; `test/taskQueue.test.js` with 100% coverage (92 tests)
 
 ### Changed
 
