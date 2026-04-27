@@ -17,6 +17,9 @@ For contribution guidelines, see [CONTRIBUTING.md](./CONTRIBUTING.md).
 - Initial project scaffolding: `CHANGELOG.md`, `LICENSE` (MIT), `.gitignore`
 - GitHub Actions CI workflow with lint and placeholder test step (`.github/workflows/ci.yml`)
 - `CONTRIBUTING.md` with development workflow, branch naming, and PR guidelines
+- `src/index.js` entry point with `helloWorld()` function
+- `test/index.test.js` with 100% test coverage (5 test cases)
+- Jest test runner configured in `package.json`
 - `CODE_OF_CONDUCT.md` adopting Contributor Covenant v2.1
 - `SECURITY.md` with vulnerability reporting instructions
 - GitHub issue templates for bug reports and feature requests (`.github/ISSUE_TEMPLATE/`)
@@ -28,6 +31,7 @@ For contribution guidelines, see [CONTRIBUTING.md](./CONTRIBUTING.md).
 ### Changed
 
 - Renamed `readme.md` → `README.md` to follow conventional casing
+- Updated `package.json`: `main` → `src/index.js`, `test` → `jest --coverage`, `start` → `node src/index.js`
 - Fixed repository URLs throughout `package.json` to match actual GitHub remote
 - Fixed `CONTRIBUTING.md`: removed stale `.env.example` reference; added cross-link to README
 
