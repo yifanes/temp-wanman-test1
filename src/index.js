@@ -22,6 +22,7 @@ const {
   dispatch,
   _reset: _resetAgentRegistry,
 } = require('./agentRegistry');
+const { createEventBus } = require('./eventBus');
 
 /**
  * Returns a greeting string.
@@ -58,4 +59,7 @@ module.exports = {
   unregisterAgent,
   dispatch,
   _resetAgentRegistry,
+
+  // eventBus
+  createEventBus,
 };
