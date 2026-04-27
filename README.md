@@ -30,7 +30,7 @@ This repository demonstrates how **wanman** bootstraps and manages a software pr
 ## Prerequisites
 
 - **Git** >= 2.30
-- **Node.js** >= 18 (if applicable once code is added)
+- **Node.js** >= 18
 - **wanman CLI** installed and configured
 
 ## Installation
@@ -79,14 +79,22 @@ gh pr create --title "Brief description" --body "Details"
 
 ```
 .
-├── .wanman/          # wanman orchestration state and agent configs
-│   ├── agents/       # per-agent working directories
-│   ├── worktree/     # isolated git worktree for agent work
-│   └── skills/       # skill snapshots and definitions
-├── CHANGELOG.md      # release history
-├── LICENSE           # project license
-├── README.md         # this file
-└── (source files)    # added as the project evolves
+├── .github/              # GitHub Actions workflows and PR/issue templates
+│   └── workflows/        # CI pipeline definitions
+├── .wanman/              # wanman orchestration state and agent configs
+│   ├── agents/           # per-agent working directories
+│   ├── worktree/         # isolated git worktree for agent work
+│   └── skills/           # skill snapshots and definitions
+├── src/                  # source code (added in Phase 2)
+│   └── index.js          # entry point — exports the hello-world function
+├── test/                 # test suite (added in Phase 2)
+│   └── index.test.js     # unit tests (>= 95% coverage)
+├── CHANGELOG.md          # release history
+├── CONTRIBUTING.md       # contribution guidelines
+├── LICENSE               # project license
+├── package.json          # Node.js manifest, scripts, and release config
+├── README.md             # this file
+└── SECURITY.md           # security policy and vulnerability reporting
 ```
 
 ## Roadmap
