@@ -2,12 +2,12 @@
   "name": "temp-wanman-test1",
   "version": "0.0.0",
   "description": "A demonstration project showcasing wanman — an autonomous multi-agent task orchestration framework for software development.",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
-    "test": "echo \"No tests configured yet\" && exit 0",
+    "test": "jest --coverage",
     "lint": "echo \"No linter configured yet\" && exit 0",
     "build": "echo \"No build step configured yet\" && exit 0",
-    "start": "echo \"No start command configured yet\" && exit 0"
+    "start": "node src/index.js"
   },
   "repository": {
     "type": "git",
