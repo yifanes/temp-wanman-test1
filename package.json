@@ -1,0 +1,54 @@
+{
+  "name": "temp-wanman-test1",
+  "version": "0.0.0",
+  "description": "A demonstration project showcasing wanman — an autonomous multi-agent task orchestration framework for software development.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"No tests configured yet\" && exit 0",
+    "lint": "echo \"No linter configured yet\" && exit 0",
+    "build": "echo \"No build step configured yet\" && exit 0",
+    "start": "echo \"No start command configured yet\" && exit 0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/anthropics/temp-wanman-test1.git"
+  },
+  "keywords": [
+    "wanman",
+    "multi-agent",
+    "task-orchestration",
+    "autonomous-agents",
+    "software-development"
+  ],
+  "author": "wanman agents",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/anthropics/temp-wanman-test1/issues"
+  },
+  "homepage": "https://github.com/anthropics/temp-wanman-test1#readme",
+  "engines": {
+    "node": ">=18"
+  },
+  "release": {
+    "branches": [
+      "main"
+    ],
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
+      "@semantic-release/changelog",
+      "@semantic-release/npm",
+      "@semantic-release/github",
+      [
+        "@semantic-release/git",
+        {
+          "assets": [
+            "CHANGELOG.md",
+            "package.json"
+          ],
+          "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
+        }
+      ]
+    ]
+  }
+}
