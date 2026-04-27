@@ -23,6 +23,7 @@ const {
   _reset: _resetAgentRegistry,
 } = require('./agentRegistry');
 const { orchestrate, _reset: _resetOrchestrator } = require('./orchestrator');
+const { main: cliMain, parseArgs } = require('./cli');
 
 /**
  * Returns a greeting string.
@@ -63,4 +64,8 @@ module.exports = {
   // orchestrator
   orchestrate,
   _resetOrchestrator,
+
+  // cli
+  cliMain,
+  parseArgs,
 };

@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "description": "A demonstration project showcasing wanman — an autonomous multi-agent task orchestration framework for software development.",
   "main": "src/index.js",
+  "bin": {
+    "wanman": "src/cli.js"
+  },
   "files": [
     "src/",
     "README.md",
