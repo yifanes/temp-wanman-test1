@@ -16,6 +16,21 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Set up Node.js
+        if: hashFiles('package.json') != ''
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        if: hashFiles('package.json') != ''
+        run: npm ci
+
+      - name: Run ESLint
+        if: hashFiles('package.json') != ''
+        run: npm run lint
+
       - name: Check for trailing whitespace
         run: |
           if grep -rn '[[:blank:]]$' README.md CHANGELOG.md LICENSE CONTRIBUTING.md 2>/dev/null; then
