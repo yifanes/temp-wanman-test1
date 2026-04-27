@@ -53,6 +53,10 @@ jobs:
         if: hashFiles('package.json') != ''
         run: npm ci
 
+      - name: Run ESLint
+        if: hashFiles('package.json') != ''
+        run: npm run lint
+
       - name: Run tests
         if: hashFiles('package.json') != ''
         run: npm test
