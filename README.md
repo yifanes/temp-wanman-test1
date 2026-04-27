@@ -126,12 +126,14 @@ gh pr create --title "Brief description" --body "Details"
 │   ├── taskRunner.js     # in-memory task orchestration: createTask, listTasks, completeTask
 │   ├── taskQueue.js      # priority-based min-heap task queue: enqueue, dequeue, peek, size
 │   ├── agentRegistry.js  # agent registration, lookup, role/status filtering, round-robin dispatch
+│   ├── orchestrator.js   # top-level orchestration: wires agentRegistry + taskQueue + taskRunner
 │   └── eventBus.js       # lightweight pub/sub event bus for task lifecycle hooks
-├── test/                 # test suite
+├── test/                 # test suite (>= 95% coverage gate)
 │   ├── index.test.js     # unit tests for index.js (100% coverage)
 │   ├── taskRunner.test.js    # unit tests for taskRunner (100% coverage)
 │   ├── taskQueue.test.js     # unit tests for taskQueue (100% coverage, 92 tests)
 │   ├── agentRegistry.test.js # unit tests for agentRegistry (100% coverage, 40 tests)
+│   ├── orchestrator.test.js  # unit tests for orchestrator (96%+ coverage)
 │   └── integration.test.js   # integration tests — taskRunner+taskQueue+agentRegistry (23 tests)
 ├── CHANGELOG.md          # release history
 ├── CONTRIBUTING.md       # contribution guidelines
