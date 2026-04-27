@@ -7,6 +7,16 @@ For contribution guidelines, see [CONTRIBUTING.md](./CONTRIBUTING.md).
 
 ## [Unreleased]
 
+### Added
+
+- `src/taskRunner.js` — task lifecycle management with `createTask`, `listTasks`, `completeTask` and full test suite (100% coverage)
+- `src/agentRegistry.js` — agent registration, lookup, listing, and role-based dispatch with full test suite (100% coverage)
+
+### Changed
+
+- ESLint configured with `eslint-config-standard` for consistent code style
+- Added `jest` as explicit devDependency in `package.json`
+
 ---
 
 ## [0.1.0] — 2026-04-27
