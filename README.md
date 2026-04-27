@@ -2,7 +2,7 @@
 
 A demonstration project showcasing [wanman](https://github.com/anthropics/wanman) -- an autonomous multi-agent task orchestration framework for software development.
 
-> **Status:** Active Development | Phase 2 -- First Feature
+> **Status:** Active Development | Phase 3 -- Core Modules
 
 ## Table of Contents
 
@@ -62,6 +62,42 @@ wanman task create "Description of work" --path <file-path>
 wanman capsule create --task <task-id> --initiative <initiative-id> --paths <file-paths>
 ```
 
+### Using taskRunner
+
+`src/taskRunner.js` provides lightweight in-memory task orchestration:
+
+```js
+const { createTask, listTasks, completeTask } = require('./src/taskRunner');
+
+// Create a task
+const task = createTask('Write unit tests');
+// => { id: 1, title: 'Write unit tests', status: 'pending', createdAt: Date, completedAt: null }
+
+// List all tasks (or filter by status)
+listTasks();            // all tasks
+listTasks('pending');   // pending only
+listTasks('completed'); // completed only
+
+// Mark a task done
+completeTask(task.id);
+// => { id: 1, ..., status: 'completed', completedAt: Date }
+```
+
+### Using taskQueue (Phase 3)
+
+`src/taskQueue.js` (coming in Phase 3) will add priority-based queuing on top of the task store:
+
+```js
+const { enqueue, dequeue, peek, size } = require('./src/taskQueue');
+
+enqueue({ title: 'Urgent fix', priority: 1 });
+enqueue({ title: 'Nice to have', priority: 5 });
+
+peek();    // returns highest-priority item without removing it
+dequeue(); // removes and returns highest-priority item
+size();    // current queue depth
+```
+
 ### Manual Development
 
 ```bash
@@ -86,9 +122,12 @@ gh pr create --title "Brief description" --body "Details"
 │   ├── worktree/         # isolated git worktree for agent work
 │   └── skills/           # skill snapshots and definitions
 ├── src/                  # source code (added in Phase 2)
-│   └── index.js          # entry point — exports the hello-world function
+│   ├── index.js          # entry point — exports the hello-world function
+│   ├── taskRunner.js     # in-memory task orchestration: createTask, listTasks, completeTask
+│   └── taskQueue.js      # priority-based task queue (Phase 3 — coming soon)
 ├── test/                 # test suite (added in Phase 2)
-│   └── index.test.js     # unit tests (>= 95% coverage)
+│   ├── index.test.js     # unit tests for index.js (>= 95% coverage)
+│   └── taskRunner.test.js# unit tests for taskRunner (100% coverage)
 ├── CHANGELOG.md          # release history
 ├── CONTRIBUTING.md       # contribution guidelines
 ├── LICENSE               # project license
@@ -103,7 +142,8 @@ gh pr create --title "Brief description" --body "Details"
 |-------|------|--------|
 | **0 -- Foundation** | README, LICENSE, .gitignore, CHANGELOG scaffolding | ✅ Done |
 | **1 -- Scaffolding** | Choose stack, initialize package manifest, set up CI, add CONTRIBUTING.md | ✅ Done |
-| **2 -- First Feature** | Implement core feature v0.1, write tests (>= 95% coverage), cut v0.1.0 release | 🚧 In Progress |
+| **2 -- First Feature** | Implement core feature v0.1, write tests (>= 95% coverage), cut v0.1.0 release | ✅ Done |
+| **3 -- Core Modules** | Add `taskQueue` (priority-based queue) and `agentRegistry` (role-based dispatch); integrate with `taskRunner`; full test suite | 🚧 In Progress |
 
 ## Development
 
@@ -161,4 +201,4 @@ This project is licensed under the MIT License. See [LICENSE](LICENSE) for detai
 
 ---
 
-*This project is managed by autonomous agents via [wanman](https://github.com/anthropics/wanman). README last updated: 2026-04-27. Roadmap: Phase 0–1 complete; Phase 2 (v0.1.0 release) in progress.*
+*This project is managed by autonomous agents via [wanman](https://github.com/anthropics/wanman). README last updated: 2026-04-27. Roadmap: Phase 0–2 complete (v0.1.0 released); Phase 3 (core modules) in progress.*
