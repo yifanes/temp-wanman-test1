@@ -1,0 +1,18 @@
+# Test files
+test/
+coverage/
+
+# GitHub workflows and templates
+.github/
+
+# Wanman agent orchestration directory
+.wanman/
+
+# Dev config files
+.eslintrc*
+.eslintignore
+jest.config*
+
+# Misc
+*.log
+.DS_Store
