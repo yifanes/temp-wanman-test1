@@ -18,7 +18,7 @@ jobs:
 
       - name: Check for trailing whitespace
         run: |
-          if grep -rn '[[:blank:]]$' README.md CHANGELOG.md LICENSE 2>/dev/null; then
+          if grep -rn '[[:blank:]]$' README.md CHANGELOG.md LICENSE CONTRIBUTING.md 2>/dev/null; then
             echo "::error::Trailing whitespace found"
             exit 1
           fi
@@ -42,11 +42,25 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Placeholder test
+      - name: Set up Node.js
+        if: hashFiles('package.json') != ''
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        if: hashFiles('package.json') != ''
+        run: npm ci
+
+      - name: Run tests
+        if: hashFiles('package.json') != ''
+        run: npm test
+
+      - name: Verify project files
         run: |
-          echo "Running placeholder tests..."
-          # Verify key project files exist
-          test -f README.md  || test -f readme.md  || { echo "::error::README.md missing"; exit 1; }
+          echo "Verifying key project files..."
+          test -f README.md  || { echo "::error::README.md missing"; exit 1; }
           test -f LICENSE    || { echo "::error::LICENSE missing"; exit 1; }
           test -f CHANGELOG.md || { echo "::error::CHANGELOG.md missing"; exit 1; }
-          echo "All placeholder tests passed"
+          echo "All project file checks passed"
