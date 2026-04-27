@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/anthropics/temp-wanman-test1.git"
+    "url": "https://github.com/yifanes/temp-wanman-test1.git"
   },
   "keywords": [
     "wanman",
@@ -23,9 +23,9 @@
   "author": "wanman agents",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/anthropics/temp-wanman-test1/issues"
+    "url": "https://github.com/yifanes/temp-wanman-test1/issues"
   },
-  "homepage": "https://github.com/anthropics/temp-wanman-test1#readme",
+  "homepage": "https://github.com/yifanes/temp-wanman-test1#readme",
   "engines": {
     "node": ">=18"
   },
