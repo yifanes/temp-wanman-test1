@@ -9,6 +9,9 @@ For contribution guidelines, see [CONTRIBUTING.md](./CONTRIBUTING.md).
 
 ### Added
 
+- `src/index.js` entry point with `helloWorld()` function
+- `test/index.test.js` with 100% test coverage (5 test cases)
+- Jest test runner configured in `package.json`
 - `CODE_OF_CONDUCT.md` adopting Contributor Covenant v2.1
 - GitHub issue templates for bug reports and feature requests (`.github/ISSUE_TEMPLATE/`)
 - `.github/PULL_REQUEST_TEMPLATE.md` with checklist matching CONTRIBUTING.md guidelines
@@ -18,6 +21,7 @@ For contribution guidelines, see [CONTRIBUTING.md](./CONTRIBUTING.md).
 
 ### Changed
 
+- Updated `package.json`: `main` → `src/index.js`, `test` → `jest --coverage`, `start` → `node src/index.js`
 - Fixed repository URLs throughout `package.json` to match actual GitHub remote
 - Fixed `CONTRIBUTING.md`: removed stale `.env.example` reference; added cross-link to README
 
