@@ -9,12 +9,20 @@ For contribution guidelines, see [CONTRIBUTING.md](./CONTRIBUTING.md).
 
 ### Added
 
-- `src/eventBus.js` — lightweight pub/sub event bus for task lifecycle hooks: `createEventBus()` returns an instance with `on`, `off`, `once`, `emit`, `listenerCount`, and `removeAllListeners`; `on` returns an unsubscribe function; `once` auto-removes after first invocation
-- `src/eventBus.js` exported from `src/index.js` alongside all other public modules (`createEventBus`)
-- Re-exported `taskRunner`, `taskQueue`, and `agentRegistry` from `src/index.js` — consumers can now import all modules from a single entry point: `const { createTask, createTaskQueue, registerAgent, createEventBus } = require('temp-wanman-test1')`
+- `src/orchestrator.js` — top-level orchestration module that wires `agentRegistry`, `taskQueue`, and `taskRunner` into a single coordinated run; `orchestrate(config)` validates config, registers agents, processes a priority queue of tasks, dispatches each task to the matching role via round-robin, and returns a run summary `{ total, completed, failed, agents, results }`
+- `src/cli.js` — minimal CLI entry point: `parseArgs`, `runCommand`, `listCommand`, `helpCommand`, `versionCommand`, and `main`; supports `run --config <file>` (orchestrate tasks from a JSON config), `list --status <filter>` (display in-memory tasks), `help`, and `--version`
+- `package.json` `bin` field: `{ "wanman": "src/cli.js" }` — installing the package globally now exposes a `wanman` executable
+- Re-exported `orchestrate` (orchestrator) and `cliMain`, `parseArgs` (CLI) from `src/index.js` — single-entry import now covers all public modules: `const { createTask, createTaskQueue, registerAgent, orchestrate, cliMain } = require('temp-wanman-test1')`
+- `test/orchestrator.test.js` — unit tests for orchestrator module (96%+ coverage)
+- `test/cli.test.js` — comprehensive unit tests for CLI module (100% statement coverage, covers all commands, flags, error paths, and output formatting)
+- ESLint CI step now runs before the test job in `.github/workflows/ci.yml` — lint failures are surfaced earlier in the pipeline
+- Re-exported `taskRunner`, `taskQueue`, and `agentRegistry` from `src/index.js` — consumers can now import all modules from a single entry point: `const { createTask, createTaskQueue, registerAgent } = require('temp-wanman-test1')`
 - `test/integration.test.js` — 23 integration tests covering cross-module workflows for `taskRunner`, `taskQueue`, and `agentRegistry` working together
-- `test/eventBus.test.js` — unit tests for `eventBus` module with 100% coverage
 - npm publish readiness: `files` whitelist in `package.json` (`src/`, `README.md`, `CHANGELOG.md`, `LICENSE`); `.npmignore` excluding dev artifacts from the published package
+
+### Removed
+
+- `src/eventBus.js` — removed from Phase 4 scope; a revised pub/sub module (`eventEmitter.js`) will be introduced in the next phase once the API is finalised
 
 ---
 

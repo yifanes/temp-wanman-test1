@@ -2,7 +2,7 @@
 
 A demonstration project showcasing [wanman](https://github.com/anthropics/wanman) -- an autonomous multi-agent task orchestration framework for software development.
 
-> **Status:** Active Development | Phase 4 -- Orchestrator & Event System
+> **Status:** Active Development | Phase 4 -- Orchestrator & CLI ✅ Landed
 
 ## Table of Contents
 
@@ -136,6 +136,51 @@ dispatch('dev');  // returns dev-1 or dev-2 in rotation
 unregisterAgent('dev-1');
 ```
 
+### Using orchestrator
+
+`src/orchestrator.js` wires `agentRegistry`, `taskQueue`, and `taskRunner` into a single coordinated run:
+
+```js
+const { orchestrate } = require('./src/orchestrator');
+
+const summary = orchestrate({
+  agents: [
+    { name: 'dev-1', role: 'dev' },
+    { name: 'dev-2', role: 'dev' },
+    { name: 'cto-1', role: 'cto' },
+  ],
+  tasks: [
+    { title: 'Implement feature A', role: 'dev', priority: 1 },
+    { title: 'Review PR', role: 'cto', priority: 2 },
+    { title: 'Write tests', role: 'dev', priority: 3 },
+  ],
+});
+
+console.log(summary);
+// => { total: 3, completed: 3, failed: 0, agents: 3, results: [...] }
+```
+
+### Using the CLI
+
+After `npm install -g temp-wanman-test1` (or `npm link`), a `wanman` binary is available:
+
+```bash
+# Orchestrate a run from a JSON config file
+wanman run --config tasks.json
+
+# List current in-memory tasks (optionally filter by status)
+wanman list
+wanman list --status pending
+
+# Show help
+wanman help
+
+# Show version
+wanman --version
+```
+
+The config file passed to `run` must be valid JSON matching the `orchestrate()` config shape (see [Using orchestrator](#using-orchestrator) above).
+
 ### Manual Development
 
 ```bash
@@ -190,7 +235,8 @@ gh pr create --title "Brief description" --body "Details"
 | **1 -- Scaffolding** | Choose stack, initialize package manifest, set up CI, add CONTRIBUTING.md | ✅ Done |
 | **2 -- First Feature** | Implement core feature v0.1, write tests (>= 95% coverage), cut v0.1.0 release | ✅ Done |
 | **3 -- Core Modules** | Add `taskQueue` (priority-based min-heap) and `agentRegistry` (role-based dispatch); integrate modules via `index.js` re-exports; full integration test suite (155+ tests) | ✅ Done |
-| **4 -- Orchestrator & Event System** | Add `orchestrator.js` (coordinate taskQueue + agentRegistry); add `eventEmitter.js` (lightweight pub/sub for inter-module events); add `bin/cli.js` (CLI entry point) | 🚧 In Progress |
+| **4 -- Orchestrator & CLI** | Add `orchestrator.js` (coordinate taskQueue + agentRegistry + taskRunner); add `cli.js` (CLI entry point: `run`, `list`, `help`, `--version`); expose `wanman` binary via `package.json` `bin` field (191 tests, 99.27% coverage) | ✅ Done |
+| **5 -- Event System** | Add `eventEmitter.js` (lightweight pub/sub for inter-module task lifecycle events); integrate with orchestrator for emit hooks | 🗓 Planned |
 
 ## Development
 
@@ -248,4 +294,4 @@ This project is licensed under the MIT License. See [LICENSE](LICENSE) for detai
 
 ---
 
-*This project is managed by autonomous agents via [wanman](https://github.com/anthropics/wanman). README last updated: 2026-04-27. Roadmap: Phase 0–3 complete (v0.1.0 released); Phase 4 (orchestrator & event system) in progress.*
+*This project is managed by autonomous agents via [wanman](https://github.com/anthropics/wanman). README last updated: 2026-04-28. Roadmap: Phase 0–4 complete (orchestrator + CLI landed, 191 tests, 99.27% coverage); Phase 5 (event system) planned.*
